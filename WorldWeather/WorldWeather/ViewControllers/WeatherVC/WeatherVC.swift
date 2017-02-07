@@ -23,8 +23,9 @@ class WeatherVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(CURRENT_WEATHER_URL)
         
-        Alamofire.request("http://date.jsontest.com/").responseJSON { response in
+        Alamofire.request(CURRENT_WEATHER_URL).responseJSON { response in
             debugPrint(response.result.value ?? "Empty response")
         }
         
