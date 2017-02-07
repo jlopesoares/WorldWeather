@@ -17,4 +17,8 @@ let LONGITUDE = "&lon="
 let APP_ID = "&appid="
 let APP_KEY = "36760d022429c477270d15cc089ac815"
 
+let FORECAST_BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?"
+
+
 let CURRENT_WEATHER_URL = "\(BASE_URL)\(LATITUDE)35\(LONGITUDE)139\(APP_ID)\(APP_KEY)"
+let FORECAST_WEATHER_URL = "\(FORECAST_BASE_URL)\(LATITUDE)35\(LONGITUDE)139\(APP_ID)\(APP_KEY)"

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C11A29E1E4A409D0087FD4F /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C11A29D1E4A409D0087FD4F /* Forecast.swift */; };
 		3C53AFD61E2842F600A85DCF /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C53AFD51E2842F600A85DCF /* WeatherVC.swift */; };
 		3CA321111E26F2D8008B9F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA321101E26F2D8008B9F99 /* AppDelegate.swift */; };
 		3CA321161E26F2D9008B9F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CA321141E26F2D9008B9F99 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		25628BDB6BBF5E11DF6ED8AE /* Pods_WorldWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorldWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C11A29D1E4A409D0087FD4F /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Forecast.swift; path = Classes/Forecast.swift; sourceTree = "<group>"; };
 		3C53AFD51E2842F600A85DCF /* WeatherVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherVC.swift; path = ViewControllers/WeatherVC/WeatherVC.swift; sourceTree = "<group>"; };
 		3CA3210D1E26F2D8008B9F99 /* WorldWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA321101E26F2D8008B9F99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				3CB1305F1E2D8B69000C25C0 /* CurrentWeather.swift */,
+				3C11A29D1E4A409D0087FD4F /* Forecast.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				3CB130601E2D8B69000C25C0 /* CurrentWeather.swift in Sources */,
 				3C53AFD61E2842F600A85DCF /* WeatherVC.swift in Sources */,
 				3CB130621E2D8D40000C25C0 /* Constants.swift in Sources */,
+				3C11A29E1E4A409D0087FD4F /* Forecast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
