@@ -21,31 +21,28 @@ class WeatherVC: UIViewController {
     
     var currentWeather: CurrentWeather!
     var forestcastWeather: Forecast!
-    var forecastArray: [Forecast()]
+    var forecastArray = [Forecast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(CURRENT_WEATHER_URL)
-    
         currentWeather = CurrentWeather()
-        forestcastWeather = Forecast()
         
-        print(FORECAST_WEATHER_URL)
-        
-        currentWeather.downloadWeatherDetails { 
-            self.updateMainUI()
+        currentWeather.downloadWeatherDetails {
+            self.downloadForecastData {
+                self.updateMainUI()
+            }
         }
     }
     
-    func downloadForecastData(completed: DownloadComplete) {
+    func downloadForecastData(completed: @escaping DownloadComplete) {
         //Download forecast data
         
         Alamofire.request(URL(string: FORECAST_WEATHER_URL)!).responseJSON { response in
             
-            let result = response.result
+            let result = response.result.value
             
-            if let dict = result.value as? Dictionary<String, AnyObject> {
+            if let dict = result as? Dictionary<String, AnyObject> {
                 
                 if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
                     
@@ -55,6 +52,9 @@ class WeatherVC: UIViewController {
                     }
                 }
             }
+            
+            completed()
+            
         }
     }
     
