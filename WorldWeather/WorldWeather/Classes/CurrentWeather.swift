@@ -14,7 +14,7 @@ class CurrentWeather {
     var _cityName: String!
     var _date: String!
     var _wheatherType: String!
-    var _currentTemperature: Double!
+    var _currentTemperature: String!
     
     
     var cityName: String {
@@ -38,9 +38,9 @@ class CurrentWeather {
         return _wheatherType
     }
     
-    var currentTemperature: Double {
+    var currentTemperature: String {
         if _currentTemperature == nil {
-            _currentTemperature = 0.0
+            _currentTemperature = ""
         }
         return _currentTemperature
     }
@@ -49,7 +49,7 @@ class CurrentWeather {
     func downloadWeatherDetails(completed: @escaping DownloadComplete){
         
         
-        let currentWeatherURL = URL(string: CURRENT_WEATHER_URL)!
+        let currentWeatherURL = URL(string: CURRENT_WEATHER_URL_CITY_NAME)!
         Alamofire.request(currentWeatherURL).responseJSON { response in
             
             let result = response.result
@@ -69,18 +69,16 @@ class CurrentWeather {
                     }
                 }
                 
-                if let date = dict["date"] as? String {
-                    self._date = date
+                if let date = dict["dt"] as? Double {
+                    let dateFromUnix = Date(timeIntervalSince1970: date)
+                    self._date = dateFromUnix.dayOfTheWeek()
                     print(self._date)
                 }
                 
                 if let main = dict["main"] as? Dictionary<String, AnyObject>{
                     
                     if let currentTemperature = main["temp"] as? Double {
-                        
-                        let kelvinToDegree = currentTemperature - 273.15
-                        self._currentTemperature = kelvinToDegree
-                        print(self._currentTemperature)
+                        self._currentTemperature = currentTemperature.convertKelvinToDegree()
                     }
                 }
                 completed()
@@ -89,11 +87,10 @@ class CurrentWeather {
     }
 }
 
-
 extension Double {
     
     func convertKelvinToDegree() -> String {
-         return "\(self - 273.15)"
+        return String(format: "%.0f", self - 272.15)
     }
     
 }

@@ -27,7 +27,7 @@ class Forecast {
         if _maxTemp == nil{
             _maxTemp = ""
         }
-        return _minTemp
+        return _maxTemp
     }
     
     var date: String {
@@ -48,11 +48,11 @@ class Forecast {
     
         if let temp = weatherDict["temp"] as? Dictionary<String, AnyObject> {
             
-            if let min = temp["temp_min"] as? Double {
+            if let min = temp["min"] as? Double {
                 _minTemp = min.convertKelvinToDegree()
             }
             
-            if let max = temp["temp_max"] as? Double {
+            if let max = temp["max"] as? Double {
                 _maxTemp = max.convertKelvinToDegree()
             }
             
@@ -68,15 +68,9 @@ class Forecast {
         if let date = weatherDict["dt"] as? Double {
             
             let unixConvertedDate = Date(timeIntervalSince1970: date)
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "EEE"
-//            dateFormatter.dateStyle = .full
-//            dateFormatter.timeStyle = .none
-            
             _date = unixConvertedDate.dayOfTheWeek()
             
         }
-        
         
     }
 }

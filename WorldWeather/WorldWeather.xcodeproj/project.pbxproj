@@ -16,6 +16,7 @@
 		3CAB54011E27A60800B21021 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3CAB54001E27A60800B21021 /* Podfile */; };
 		3CB130601E2D8B69000C25C0 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1305F1E2D8B69000C25C0 /* CurrentWeather.swift */; };
 		3CB130621E2D8D40000C25C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB130611E2D8D40000C25C0 /* Constants.swift */; };
+		3CBE5DE51E4B2BB100F46CA6 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBE5DE41E4B2BB100F46CA6 /* WeatherCell.swift */; };
 		D83A07800DE386F1F358B9C9 /* Pods_WorldWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25628BDB6BBF5E11DF6ED8AE /* Pods_WorldWeather.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		3CAB54001E27A60800B21021 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		3CB1305F1E2D8B69000C25C0 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentWeather.swift; path = Classes/CurrentWeather.swift; sourceTree = "<group>"; };
 		3CB130611E2D8D40000C25C0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3CBE5DE41E4B2BB100F46CA6 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherCell.swift; path = Classes/UIControls/UICollectionViewCells/WeatherCell/WeatherCell.swift; sourceTree = "<group>"; };
 		3CEA9BC897B8909EEAACF8D9 /* Pods-WorldWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorldWeather/Pods-WorldWeather.release.xcconfig"; sourceTree = "<group>"; };
 		F9989FC8E1DD2A23A9EB4CD9 /* Pods-WorldWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorldWeather/Pods-WorldWeather.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +62,7 @@
 		3C53AFCF1E28421800A85DCF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3CBE5DDF1E4B28D600F46CA6 /* UIControls */,
 				3CB1305F1E2D8B69000C25C0 /* CurrentWeather.swift */,
 				3C11A29D1E4A409D0087FD4F /* Forecast.swift */,
 			);
@@ -131,13 +134,37 @@
 		3CA3210F1E26F2D8008B9F99 /* WorldWeather */ = {
 			isa = PBXGroup;
 			children = (
+				3C53AFCF1E28421800A85DCF /* Classes */,
 				3C53AFD31E28427300A85DCF /* Layouts */,
 				3C53AFD01E28421E00A85DCF /* ViewControllers */,
-				3C53AFCF1E28421800A85DCF /* Classes */,
 				3C53AFD21E28425400A85DCF /* Resources */,
 				3C53AFD11E28422700A85DCF /* Supporting Files */,
 			);
 			path = WorldWeather;
+			sourceTree = "<group>";
+		};
+		3CBE5DDF1E4B28D600F46CA6 /* UIControls */ = {
+			isa = PBXGroup;
+			children = (
+				3CBE5DE01E4B28E100F46CA6 /* UICollectionViewCells */,
+			);
+			name = UIControls;
+			sourceTree = "<group>";
+		};
+		3CBE5DE01E4B28E100F46CA6 /* UICollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				3CBE5DE11E4B28EB00F46CA6 /* WeatherCell */,
+			);
+			name = UICollectionViewCells;
+			sourceTree = "<group>";
+		};
+		3CBE5DE11E4B28EB00F46CA6 /* WeatherCell */ = {
+			isa = PBXGroup;
+			children = (
+				3CBE5DE41E4B2BB100F46CA6 /* WeatherCell.swift */,
+			);
+			name = WeatherCell;
 			sourceTree = "<group>";
 		};
 		49DFF4BA4181E2A2D2696F55 /* Frameworks */ = {
@@ -275,6 +302,7 @@
 			files = (
 				3CA321111E26F2D8008B9F99 /* AppDelegate.swift in Sources */,
 				3CB130601E2D8B69000C25C0 /* CurrentWeather.swift in Sources */,
+				3CBE5DE51E4B2BB100F46CA6 /* WeatherCell.swift in Sources */,
 				3C53AFD61E2842F600A85DCF /* WeatherVC.swift in Sources */,
 				3CB130621E2D8D40000C25C0 /* Constants.swift in Sources */,
 				3C11A29E1E4A409D0087FD4F /* Forecast.swift in Sources */,

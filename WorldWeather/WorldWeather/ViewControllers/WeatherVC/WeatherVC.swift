@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class WeatherVC: UIViewController {
+class WeatherVC: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var cityLabel: UILabel!
@@ -35,10 +35,24 @@ class WeatherVC: UIViewController {
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return forecastArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell-weather", for: indexPath) as? WeatherCell {
+            weatherCell.configureCell(weather: forecastArray[indexPath.row])
+            return weatherCell
+        }
+
+        return UICollectionViewCell()
+    }
+    
     func downloadForecastData(completed: @escaping DownloadComplete) {
         //Download forecast data
         
-        Alamofire.request(URL(string: FORECAST_WEATHER_URL)!).responseJSON { response in
+        Alamofire.request(URL(string: FORECAST_WEATHER_URL_CITY_NAME)!).responseJSON { response in
             
             let result = response.result.value
             
@@ -59,7 +73,13 @@ class WeatherVC: UIViewController {
     }
     
     func updateMainUI() {
-        print("teste")
+        temperatureLabel.text = currentWeather.currentTemperature
+        cityLabel.text = currentWeather.cityName
+        currentDayLabel.text = currentWeather.date
+        weatherTypeImageView.image = UIImage(named: currentWeather.weatherType)
+        
+        collectionView.reloadData()
+        
     }
 
 }
