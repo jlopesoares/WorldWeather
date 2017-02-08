@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 import Alamofire
 
-class WeatherVC: UIViewController, UICollectionViewDataSource {
+class WeatherVC: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var cityLabel: UILabel!
@@ -19,6 +20,8 @@ class WeatherVC: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var currentDayLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
     var currentWeather: CurrentWeather!
     var forestcastWeather: Forecast!
     var forecastArray = [Forecast]()
@@ -26,33 +29,29 @@ class WeatherVC: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
         currentWeather = CurrentWeather()
         
-        currentWeather.downloadWeatherDetails {
-            self.downloadForecastData {
-                self.updateMainUI()
-            }
-        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return forecastArray.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        if let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell-weather", for: indexPath) as? WeatherCell {
-            weatherCell.configureCell(weather: forecastArray[indexPath.row])
-            return weatherCell
+        locationManager.locationAuthStatus { location in
+            currentLocation = location
+            
+            currentWeather.downloadWeatherDetails(currentLocation: location, completed: { 
+                self.downloadForecastData {
+                    self.updateMainUI()
+                }
+            })
         }
-
-        return UICollectionViewCell()
     }
     
-    func downloadForecastData(completed: @escaping DownloadComplete) {
+    func downloadForecastData(completed: @escaping CompleteClosure) {
         //Download forecast data
         
-        Alamofire.request(URL(string: FORECAST_WEATHER_URL_CITY_NAME)!).responseJSON { response in
+        Alamofire.request(URL(string: String(format: FORECAST_WEATHER_URL, self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude))!).responseJSON { response in
             
             let result = response.result.value
             
@@ -66,9 +65,7 @@ class WeatherVC: UIViewController, UICollectionViewDataSource {
                     }
                 }
             }
-            
             completed()
-            
         }
     }
     
@@ -79,7 +76,25 @@ class WeatherVC: UIViewController, UICollectionViewDataSource {
         weatherTypeImageView.image = UIImage(named: currentWeather.weatherType)
         
         collectionView.reloadData()
-        
     }
+    
+}
 
+
+extension WeatherVC: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return forecastArray.count - 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell-weather", for: indexPath) as? WeatherCell {
+            weatherCell.configureCell(weather: forecastArray[indexPath.row + 1])
+            return weatherCell
+        }
+        
+        return UICollectionViewCell()
+    }
+    
 }

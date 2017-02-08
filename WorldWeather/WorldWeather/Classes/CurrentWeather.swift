@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import Alamofire
 
 class CurrentWeather {
@@ -46,10 +47,9 @@ class CurrentWeather {
     }
     
     
-    func downloadWeatherDetails(completed: @escaping DownloadComplete){
+    func downloadWeatherDetails(currentLocation: CLLocation, completed: @escaping CompleteClosure){
         
-        
-        let currentWeatherURL = URL(string: CURRENT_WEATHER_URL_CITY_NAME)!
+        let currentWeatherURL = URL(string: String(format: CURRENT_WEATHER_URL, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude))!
         Alamofire.request(currentWeatherURL).responseJSON { response in
             
             let result = response.result
@@ -58,25 +58,21 @@ class CurrentWeather {
                 
                 if let name = dict["name"] as? String {
                     self._cityName = name
-                    print(self._cityName)
                 }
                 
                 if let weather = dict["weather"] as? [Dictionary<String, AnyObject>]{
                     
                     if let main = weather[0]["main"] as? String {
                         self._wheatherType = main.capitalized
-                        print(self._wheatherType)
                     }
                 }
                 
                 if let date = dict["dt"] as? Double {
                     let dateFromUnix = Date(timeIntervalSince1970: date)
                     self._date = dateFromUnix.dayOfTheWeek()
-                    print(self._date)
                 }
                 
                 if let main = dict["main"] as? Dictionary<String, AnyObject>{
-                    
                     if let currentTemperature = main["temp"] as? Double {
                         self._currentTemperature = currentTemperature.convertKelvinToDegree()
                     }
@@ -85,12 +81,4 @@ class CurrentWeather {
             }
         }
     }
-}
-
-extension Double {
-    
-    func convertKelvinToDegree() -> String {
-        return String(format: "%.0f", self - 272.15)
-    }
-    
 }

@@ -10,28 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
-            timestampString = "508247043.789286"
+            timestampString = "508262941.701928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "updateMainUI()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WorldWeather/Classes/CurrentWeather.swift"
-            timestampString = "508247350.166775"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "convertKelvinToDegree()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -49,6 +33,54 @@
             endingLineNumber = "20"
             landmarkName = "configureCell(weather:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
+            timestampString = "508262941.701928"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "downloadForecastData(completed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WorldWeather.WeatherVC.downloadForecastData (completed : () -&gt; ()) -&gt; ()"
+                  moduleName = "WorldWeather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaosoares/OnSoares/WorldWeather/WorldWeather/WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
+                  timestampString = "508260642.499506"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WorldWeather.WeatherVC.(downloadForecastData (completed : () -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "WorldWeather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaosoares/OnSoares/WorldWeather/WorldWeather/WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
+                  timestampString = "508260642.502374"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -9,7 +9,7 @@
 import Foundation
 
 
-typealias DownloadComplete = () -> ()
+typealias CompleteClosure = () -> ()
 
 let BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
 let LATITUDE = "lat="
@@ -24,5 +24,7 @@ let FORECAST_BASE_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?"
 let CURRENT_WEATHER_URL_CITY_NAME = "\(BASE_URL)\(CITY_NAME)Lisbon\(APP_ID)\(APP_KEY)"
 let FORECAST_WEATHER_URL_CITY_NAME = "\(FORECAST_BASE_URL)\(CITY_NAME)Lisbon\(APP_ID)\(APP_KEY)"
 
-let CURRENT_WEATHER_URL = "\(BASE_URL)\(LATITUDE)38.716671\(LONGITUDE)-9.13333\(APP_ID)\(APP_KEY)"
-let FORECAST_WEATHER_URL = "\(FORECAST_BASE_URL)\(LATITUDE)38.716671\(LONGITUDE)-9.13333\(APP_ID)\(APP_KEY)"
+
+
+let CURRENT_WEATHER_URL = "\(BASE_URL)\(LATITUDE)%f\(LONGITUDE)%f\(APP_ID)\(APP_KEY)"
+let FORECAST_WEATHER_URL = "\(FORECAST_BASE_URL)\(LATITUDE)%f\(LONGITUDE)%f\(APP_ID)\(APP_KEY)"

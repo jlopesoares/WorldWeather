@@ -47,7 +47,6 @@ class Forecast {
     init(weatherDict: Dictionary<String, AnyObject>) {
     
         if let temp = weatherDict["temp"] as? Dictionary<String, AnyObject> {
-            
             if let min = temp["min"] as? Double {
                 _minTemp = min.convertKelvinToDegree()
             }
@@ -55,7 +54,6 @@ class Forecast {
             if let max = temp["max"] as? Double {
                 _maxTemp = max.convertKelvinToDegree()
             }
-            
         }
         
         if let weather = weatherDict["weather"] as? [Dictionary<String, AnyObject>] {
@@ -69,24 +67,9 @@ class Forecast {
             
             let unixConvertedDate = Date(timeIntervalSince1970: date)
             _date = unixConvertedDate.dayOfTheWeek()
-            
         }
-        
     }
 }
-
-
-
-extension Date {
-    
-    func dayOfTheWeek() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        return dateFormatter.string(from: self)
-    }
-    
-}
-
 
 
 
