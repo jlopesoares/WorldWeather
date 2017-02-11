@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,6 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portugal" translatesAutoresizingMaskIntoConstraints="NO" id="YdX-fr-yjk">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lisbon, Portugal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cf-yi-4TK">
                                 <rect key="frame" x="16" y="73" width="343" height="37"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="27"/>
@@ -129,9 +132,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="YdX-fr-yjk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4wz-MZ-rJ7"/>
                             <constraint firstItem="AhH-BK-aVt" firstAttribute="top" secondItem="3mh-Qb-4Mt" secondAttribute="bottom" constant="2" id="7Y3-Xp-Vzi"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YdX-fr-yjk" secondAttribute="bottom" id="AHv-gy-R1G"/>
                             <constraint firstItem="Yq4-wV-286" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Kv2-9R-4KF"/>
                             <constraint firstItem="3mh-Qb-4Mt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="PHo-rR-Ub3"/>
                             <constraint firstItem="AhH-BK-aVt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SkT-iJ-GjX"/>
@@ -140,11 +145,15 @@
                             <constraint firstItem="3mh-Qb-4Mt" firstAttribute="top" secondItem="9Cf-yi-4TK" secondAttribute="bottom" constant="8" id="X8u-Vr-EH5"/>
                             <constraint firstItem="Yq4-wV-286" firstAttribute="top" secondItem="AhH-BK-aVt" secondAttribute="bottom" constant="16" id="XR9-uu-4V1"/>
                             <constraint firstAttribute="trailing" secondItem="Yq4-wV-286" secondAttribute="trailing" constant="16" id="c3q-7P-sYy"/>
+                            <constraint firstAttribute="trailing" secondItem="YdX-fr-yjk" secondAttribute="trailing" id="eg6-Ao-nqj"/>
                             <constraint firstAttribute="trailing" secondItem="9Cf-yi-4TK" secondAttribute="trailing" constant="16" id="ghx-xf-GTQ"/>
                             <constraint firstAttribute="trailing" secondItem="sxS-X2-nw8" secondAttribute="trailing" id="ixc-cg-f0Q"/>
+                            <constraint firstItem="YdX-fr-yjk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jHt-hh-2Wn"/>
                             <constraint firstItem="Fh3-YC-nuP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="n0r-HJ-KEH"/>
                             <constraint firstItem="9Cf-yi-4TK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="p2U-ND-5eM"/>
                             <constraint firstItem="hMt-Yy-i3V" firstAttribute="bottom" secondItem="3mh-Qb-4Mt" secondAttribute="bottom" constant="-10" id="s6q-tm-ghO"/>
+                            <constraint firstItem="YdX-fr-yjk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="tqo-dP-ZjZ"/>
+                            <constraint firstItem="YdX-fr-yjk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vRj-tG-dQE"/>
                             <constraint firstItem="9Cf-yi-4TK" firstAttribute="top" secondItem="Fh3-YC-nuP" secondAttribute="bottom" constant="8" id="vj5-JD-dfr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sxS-X2-nw8" secondAttribute="bottom" id="wju-hp-IZh"/>
                             <constraint firstItem="sxS-X2-nw8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ymg-eT-uKK"/>
@@ -154,6 +163,7 @@
                         <outlet property="cityLabel" destination="9Cf-yi-4TK" id="h6C-Ec-cpI"/>
                         <outlet property="collectionView" destination="sxS-X2-nw8" id="8v6-31-Iit"/>
                         <outlet property="currentDayLabel" destination="Yq4-wV-286" id="uG9-db-nkq"/>
+                        <outlet property="imageViewBackground" destination="YdX-fr-yjk" id="UPR-6e-cC7"/>
                         <outlet property="pageControl" destination="Fh3-YC-nuP" id="ARf-TO-ZLU"/>
                         <outlet property="temperatureLabel" destination="3mh-Qb-4Mt" id="y0U-Fn-P9o"/>
                         <outlet property="temperatureTypeLabel" destination="hMt-Yy-i3V" id="iJ6-77-oJj"/>
@@ -162,7 +172,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="122.78860569715144"/>
+            <point key="canvasLocation" x="559.20000000000005" y="137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="portugal" width="640" height="426"/>
+    </resources>
 </document>

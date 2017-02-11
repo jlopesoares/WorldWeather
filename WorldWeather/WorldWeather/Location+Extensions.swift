@@ -22,7 +22,6 @@ extension CLLocationManager {
             break
         default:
             self.requestWhenInUseAuthorization()
-            locationAuthStatus(completed: completed)
         }
     }
     

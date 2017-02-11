@@ -10,9 +10,9 @@ import Foundation
 
 extension Date {
     
-    func dayOfTheWeek() -> String {
+    func dayOfTheWeek(format dateFormat: String?) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.dateFormat = (dateFormat != nil) ? dateFormat : "EEEE"
         return dateFormatter.string(from: self)
     }
     

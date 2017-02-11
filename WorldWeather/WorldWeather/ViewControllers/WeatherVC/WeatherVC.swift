@@ -19,6 +19,7 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var weatherTypeImageView: UIImageView!
     @IBOutlet weak var currentDayLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var imageViewBackground : UIImageView!
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation!
@@ -37,36 +38,30 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        setup()
+        
+        
+        
         locationManager.locationAuthStatus { location in
-            currentLocation = location
             
-            currentWeather.downloadWeatherDetails(currentLocation: location, completed: { 
-                self.downloadForecastData {
+            let weatherServices = WeatherServices(currentLocation: location)
+            
+            weatherServices.getCurrentWeather(completed: { wrapper in
+                self.currentWeather = wrapper
+                
+                weatherServices.getForecastWeather(completed: { forecastData in
+                    self.forecastArray = forecastData
                     self.updateMainUI()
-                }
+                })
+                
             })
         }
     }
     
-    func downloadForecastData(completed: @escaping CompleteClosure) {
-        //Download forecast data
-        
-        Alamofire.request(URL(string: String(format: FORECAST_WEATHER_URL, self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude))!).responseJSON { response in
-            
-            let result = response.result.value
-            
-            if let dict = result as? Dictionary<String, AnyObject> {
-                
-                if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
-                    
-                    for obj in list {
-                        let forecast = Forecast(weatherDict: obj)
-                        self.forecastArray.append(forecast)
-                    }
-                }
-            }
-            completed()
-        }
+    func setup(){
+        let overlay = UIView(frame: self.view.bounds)
+        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        imageViewBackground.addSubview(overlay)
     }
     
     func updateMainUI() {
