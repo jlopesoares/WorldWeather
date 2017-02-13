@@ -21,11 +21,11 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageViewBackground : UIImageView!
     
-    let locationManager = CLLocationManager()
-    var currentLocation: CLLocation!
-    var currentWeather: CurrentWeather!
-    var forestcastWeather: Forecast!
-    var forecastArray = [Forecast]()
+    private let locationManager = CLLocationManager()
+    private var currentLocation: CLLocation!
+    private var currentWeather: CurrentWeather!
+    private var forestcastWeather: Forecast!
+    fileprivate var forecastArray = [Forecast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +39,6 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         super.viewDidAppear(animated)
         
         setup()
-        
-        
         
         locationManager.locationAuthStatus { location in
             
