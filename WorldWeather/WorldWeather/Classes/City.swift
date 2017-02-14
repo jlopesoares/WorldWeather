@@ -13,8 +13,8 @@ class City {
     var _name: String!
     var _identifier: Int!
     var _country: String!
-    var _latitude: Double!
-    var _longitude: Double!
+    var _latitude: String!
+    var _longitude: String!
     
     var name: String {
         if _name == nil {
@@ -37,26 +37,55 @@ class City {
         return _country
     }
 
-    var latitude: Double {
+    var latitude: String {
         if _latitude == nil {
-            _latitude = 0.0
+            _latitude = ""
         }
         return _latitude
     }
 
-    var longitude: Double {
+    var longitude: String {
         if _longitude == nil {
-            _longitude = 0.0
+            _longitude = ""
         }
         return _longitude
     }
 
-    init(name: String, identifier: Int, country: String, latitude: Double, longitude: Double) {
+    init(name: String, identifier: Int, country: String, latitude: String, longitude: String) {
         _name = name
         _identifier = identifier
         _country = country
         _latitude = latitude
         _longitude = longitude
     }
+    
+    init(city: Dictionary<String, AnyObject>) {
+        
+        if let identifier = city["_id"] as? Int {
+            _identifier = identifier
+        }
+        
+        if let coords = city["coord"] as? Dictionary<String, AnyObject> {
+        
+            if let lat = coords["lat"] as? String {
+                _latitude = lat
+            }
+            
+            if let lon = coords["lon"] as? String {
+                _longitude = lon
+            }
+            
+        }
+        
+        if let country = city["country"] as? String {
+            _country = country
+        }
+        
+        if let name = city["name"] as? String {
+            _name = name
+        }
+        
+    }
+    
     
 }

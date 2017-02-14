@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yO3-Oj-h9b">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -193,6 +193,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="559.20000000000005" y="137.18140929535232"/>
+        </scene>
+        <!--CitiesVC-->
+        <scene sceneID="4IR-cz-eK9">
+            <objects>
+                <viewController id="yO3-Oj-h9b" customClass="CitiesVC" customModule="WorldWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rh9-FP-K7c"/>
+                        <viewControllerLayoutGuide type="bottom" id="SMU-vv-3fX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kLa-cO-GYn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gtq-Lo-2Go">
+                                <rect key="frame" x="16" y="28" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c3M-C6-09Q">
+                                <rect key="frame" x="17" y="58" width="340" height="0.0"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="340" id="CEr-xY-TpY"/>
+                                    <constraint firstAttribute="height" id="TXf-YR-6iB"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gtq-Lo-2Go" secondAttribute="trailing" constant="16" id="6Tf-i9-rE8"/>
+                            <constraint firstItem="c3M-C6-09Q" firstAttribute="centerX" secondItem="kLa-cO-GYn" secondAttribute="centerX" id="AKZ-yb-FV6"/>
+                            <constraint firstItem="gtq-Lo-2Go" firstAttribute="leading" secondItem="kLa-cO-GYn" secondAttribute="leading" constant="16" id="Cpo-KM-lbp"/>
+                            <constraint firstItem="gtq-Lo-2Go" firstAttribute="top" secondItem="Rh9-FP-K7c" secondAttribute="bottom" constant="8" id="OwD-zA-PsL"/>
+                            <constraint firstItem="c3M-C6-09Q" firstAttribute="top" secondItem="gtq-Lo-2Go" secondAttribute="bottom" id="ZlY-2f-I9X"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="citiesTableview" destination="c3M-C6-09Q" id="bdz-t3-0qp"/>
+                        <outlet property="heightTableViewConstraint" destination="TXf-YR-6iB" id="jFu-lQ-QBq"/>
+                        <outlet property="searchTextField" destination="gtq-Lo-2Go" id="sDO-Tb-MfR"/>
+                        <outlet property="widthConstraintTableView" destination="CEr-xY-TpY" id="pEd-gI-GhV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eRt-lq-nDV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1280.8" y="137.18140929535232"/>
         </scene>
     </scenes>
     <resources>
