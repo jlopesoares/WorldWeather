@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class CitiesVC: UIViewController {
     
@@ -21,6 +22,9 @@ class CitiesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
         searchTextField.delegate = self
         
         getCitiesList()
@@ -43,6 +47,7 @@ class CitiesVC: UIViewController {
                             let currentCity = City(city: city)
                             cities.append(currentCity)
                         }
+                        
                     }
 
                 } else {
@@ -76,8 +81,7 @@ class CitiesVC: UIViewController {
     
     func endSearch() {
         
-        
-        self.widthConstraintTableView.constant = searchTextField.bounds.width
+        self.widthConstraintTableView.constant = 250
         UIView.animate(withDuration: 0.6, animations: {
             self.view.layoutIfNeeded()
         }, completion: { finished in
@@ -147,6 +151,7 @@ extension CitiesVC: UITableViewDataSource {
         let cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
         
         let city = cities[indexPath.row]
+        cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
         cell.textLabel?.text = city._name
         

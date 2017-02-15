@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import Alamofire
 
+private let CitiesViewControllerIdentifier = "citiesViewController"
+
 class WeatherVC: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var pageControl: UIPageControl!
@@ -35,6 +37,13 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -57,9 +66,16 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     }
     
     func setup(){
-        let overlay = UIView(frame: self.view.bounds)
-        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        imageViewBackground.addSubview(overlay)
+        var overlay = view.viewWithTag(777)
+        
+        if overlay == nil {
+            overlay = UIView(frame: self.view.bounds)
+            overlay!.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+            overlay!.tag = 777
+            imageViewBackground.addSubview(overlay!)
+
+        }
+        
     }
     
     func updateMainUI() {
@@ -70,6 +86,15 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         
         collectionView.reloadData()
     }
+    
+    @IBAction func openCitiesListButtonPressed(_ sender: Any) {
+    
+        if let citiesViewController = storyboard?.instantiateViewController(withIdentifier: CitiesViewControllerIdentifier) as? CitiesVC {
+            navigationController?.pushViewController(citiesViewController, animated: true)
+        }
+        
+    }
+    
     
 }
 

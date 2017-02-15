@@ -9,6 +9,22 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
+            timestampString = "508805765.30932"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "updateMainUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "WorldWeather/Classes/UIControls/UICollectionViewCells/WeatherCell/WeatherCell.swift"
             timestampString = "508248543.266298"
             startingColumnNumber = "9223372036854775807"
@@ -26,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorldWeather/Classes/Services/WeatherServices.swift"
-            timestampString = "508698481.22532"
+            timestampString = "508523062.82767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "getCurrentWeather(completed:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,12 +58,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorldWeather/ViewControllers/CitiesVC/CitiesVC.swift"
-            timestampString = "508774573.52061"
+            timestampString = "508805043.663721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "endSearch()"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "updateTableView(searchText:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
+            timestampString = "508805508.71775"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WorldWeather.WeatherVC.viewDidAppear (Swift.Bool) -&gt; ()"
+                  moduleName = "WorldWeather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaosoares/OnSoares/WorldWeather/WorldWeather/WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
+                  timestampString = "508805510.161207"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "153">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WorldWeather.WeatherVC.(viewDidAppear (Swift.Bool) -&gt; ()).(closure #1)"
+                  moduleName = "WorldWeather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joaosoares/OnSoares/WorldWeather/WorldWeather/WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
+                  timestampString = "508805510.162537"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WorldWeather/ViewControllers/WeatherVC/WeatherVC.swift"
+            timestampString = "508805508.71775"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
