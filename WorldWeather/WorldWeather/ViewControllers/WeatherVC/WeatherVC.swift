@@ -35,6 +35,9 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         currentWeather = CurrentWeather()
         
+        
+        pageControl.numberOfPages = 4
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,16 +69,7 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     }
     
     func setup(){
-        var overlay = view.viewWithTag(777)
-        
-        if overlay == nil {
-            overlay = UIView(frame: self.view.bounds)
-            overlay!.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-            overlay!.tag = 777
-            imageViewBackground.addSubview(overlay!)
-
-        }
-        
+        imageViewBackground.shouldHaveOverlay()
     }
     
     func updateMainUI() {
@@ -94,8 +88,6 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         }
         
     }
-    
-    
 }
 
 
