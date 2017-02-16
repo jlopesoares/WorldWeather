@@ -27,17 +27,12 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     private var currentLocation: CLLocation!
     private var currentWeather: CurrentWeather!
     private var forestcastWeather: Forecast!
+    var selectedCities: [String]!
     fileprivate var forecastArray = [Forecast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        locationManager.delegate = self
-        currentWeather = CurrentWeather()
-        
-        
-        pageControl.numberOfPages = 4
-        
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,12 +40,19 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         
+        selectedCities = UserDefaults.standard.array(forKey: "selectedCities") as? [String]
+        
+        if let cities = selectedCities{
+            pageControl.numberOfPages = cities.count
+        } else {
+            selectedCities = [String]()
+            pageControl.numberOfPages = 0
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        setup()
         
         locationManager.locationAuthStatus { location in
             
@@ -70,6 +72,9 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     
     func setup(){
         imageViewBackground.shouldHaveOverlay()
+        
+        locationManager.delegate = self
+        currentWeather = CurrentWeather()
     }
     
     func updateMainUI() {
@@ -84,6 +89,7 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     @IBAction func openCitiesListButtonPressed(_ sender: Any) {
     
         if let citiesViewController = storyboard?.instantiateViewController(withIdentifier: CitiesViewControllerIdentifier) as? CitiesVC {
+            citiesViewController._selectedCities = selectedCities
             navigationController?.pushViewController(citiesViewController, animated: true)
         }
         

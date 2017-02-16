@@ -12,7 +12,7 @@ import Foundation
 class CitiesVC: UIViewController {
     
     var cities = [City]()
-    var selectedCities = [String]()
+    var _selectedCities: [String]!
     
     @IBOutlet weak var citiesTableview: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -21,6 +21,14 @@ class CitiesVC: UIViewController {
     @IBOutlet weak var heightTableViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var widthConstraintTableView: NSLayoutConstraint!
     
+    
+    var selectedCities: [String]{
+        if _selectedCities == nil {
+            _selectedCities = [String]()
+        }
+        return _selectedCities
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -28,17 +36,37 @@ class CitiesVC: UIViewController {
     
     func setup(){
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
         searchTextField.delegate = self
         citiesTableview.dataSource = self
         citiesTableview.delegate = self
         collectionView.dataSource = self
         citiesTableview.separatorColor = UIColor.lightGray
         
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(getSelectedCell))
+        collectionView.addGestureRecognizer(longPressGesture)
+            
         getCitiesList()
         setupObservers()
     }
     
+    func getSelectedCell(longGestureHandler: UILongPressGestureRecognizer) {
+        if longGestureHandler.state == .recognized {
+            let location = longGestureHandler.location(in: collectionView)
+            
+            if let indexpath = collectionView.indexPathForItem(at: location) {
+                if let cell = collectionView.cellForItem(at: indexpath) as? CityCell {
+
+                    if let index = selectedCities.index(of: cell.cityNameLabel.text!) {
+                        _selectedCities.remove(at: index)
+                        UserDefaults.standard.set(selectedCities, forKey: "selectedCities")
+                        collectionView.deleteItems(at: [indexpath])
+
+                    }
+                }
+            }
+        }
+    }
 //    func setupNavigationBarButtons() {
 //        let confirmButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(confirmButtonPressed))
 //        navigationItem.rightBarButtonItem = confirmButton
@@ -132,7 +160,6 @@ class CitiesVC: UIViewController {
 }
 
 //MARK: UITextFieldDelegate
-
 extension CitiesVC: UITextFieldDelegate {
     
     //setup list of cities/locations (squares with background)
@@ -168,11 +195,10 @@ extension CitiesVC: UITextFieldDelegate {
 }
 
 //MARK: UITableViewDatasource
-
 extension CitiesVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return cities.count-1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -190,8 +216,6 @@ extension CitiesVC: UITableViewDataSource {
 
 
 //MARK: UICollectionViewDatasource
-
-
 extension CitiesVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -201,7 +225,7 @@ extension CitiesVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cityCell", for: indexPath) as? CityCell {
             
-            cell.setupCell()
+            cell.setupCellWith(cityName: selectedCities[indexPath.row])
 
             return cell
         }
@@ -211,14 +235,25 @@ extension CitiesVC: UICollectionViewDataSource {
 }
 
 
+//Mark: UICollectionViewDelgate
+extension CitiesVC: UICollectionViewDelegate{
+    
+    
+    
+}
+
 //Mark: UICollectionViewDelegate
 
 extension CitiesVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCities.append("teste")
-        collectionView.reloadData()
-        endSearch()
+        
+        if let city = cities[indexPath.row] as? City{
+            _selectedCities.append(city.name)
+            UserDefaults.standard.set(selectedCities, forKey: "selectedCities")
+            collectionView.reloadData()
+            endSearch()
+        }
     }
     
 }

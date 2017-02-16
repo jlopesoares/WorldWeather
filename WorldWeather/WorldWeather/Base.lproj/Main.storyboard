@@ -112,6 +112,9 @@
                             </collectionView>
                             <pageControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Fh3-YC-nuP">
                                 <rect key="frame" x="64" y="72" width="247" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="t6g-3O-Gkt"/>
+                                </constraints>
                             </pageControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mh-Qb-4Mt">
                                 <rect key="frame" x="40" y="170" width="129.5" height="137"/>
@@ -230,8 +233,8 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="We9-Yj-KCO">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUe-aT-KzZ">
-                                                    <rect key="frame" x="29" y="40" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUe-aT-KzZ">
+                                                    <rect key="frame" x="8" y="40" width="84" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -243,6 +246,8 @@
                                             <constraint firstItem="tUe-aT-KzZ" firstAttribute="centerX" secondItem="DQQ-7K-Is9" secondAttribute="centerX" id="Hr1-WH-pBZ"/>
                                             <constraint firstItem="We9-Yj-KCO" firstAttribute="top" secondItem="DQQ-7K-Is9" secondAttribute="top" id="IXU-6Q-c4b"/>
                                             <constraint firstAttribute="bottom" secondItem="We9-Yj-KCO" secondAttribute="bottom" id="J8d-cm-xiC"/>
+                                            <constraint firstAttribute="trailing" secondItem="tUe-aT-KzZ" secondAttribute="trailing" constant="8" id="LvV-yv-Z1n"/>
+                                            <constraint firstItem="tUe-aT-KzZ" firstAttribute="leading" secondItem="DQQ-7K-Is9" secondAttribute="leading" constant="8" id="SZZ-c9-AoP"/>
                                             <constraint firstItem="tUe-aT-KzZ" firstAttribute="centerY" secondItem="DQQ-7K-Is9" secondAttribute="centerY" id="UmZ-SF-UAs"/>
                                             <constraint firstAttribute="trailing" secondItem="We9-Yj-KCO" secondAttribute="trailing" id="ZZo-BX-9c2"/>
                                         </constraints>

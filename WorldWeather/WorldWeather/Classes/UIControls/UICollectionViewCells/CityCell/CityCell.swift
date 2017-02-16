@@ -13,9 +13,9 @@ class CityCell: UICollectionViewCell {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var cityNameLabel: UILabel!
     
-    func setupCell() {
+    func setupCellWith(cityName: String) {
         backgroundImageView.image = UIImage(named: "portugal")
-        cityNameLabel.text = "Lisboa"
+        cityNameLabel.text = cityName
         cityNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         cityNameLabel.textColor = UIColor.white
         backgroundImageView.shouldHaveOverlay()
