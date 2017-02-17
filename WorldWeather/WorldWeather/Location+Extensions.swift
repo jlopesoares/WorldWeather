@@ -18,7 +18,6 @@ extension CLLocationManager {
             if let currentLocation = self.location {
                 completed(currentLocation)
             }
-            
             break
         default:
             self.requestWhenInUseAuthorization()

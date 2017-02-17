@@ -43,6 +43,8 @@ class CitiesVC: UIViewController {
         citiesTableview.separatorColor = UIColor.lightGray
         
         
+        setupNavigationBarButtons()
+        
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(getSelectedCell))
         collectionView.addGestureRecognizer(longPressGesture)
             
@@ -67,17 +69,18 @@ class CitiesVC: UIViewController {
             }
         }
     }
-//    func setupNavigationBarButtons() {
-//        let confirmButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(confirmButtonPressed))
-//        navigationItem.rightBarButtonItem = confirmButton
-//        
-//    }
     
-//    func confirmButtonPressed() {
-//        
-//        navigationController?.popToRootViewController(animated: true)
-//        
-//    }
+    func setupNavigationBarButtons() {
+        let confirmButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(confirmButtonPressed))
+        navigationItem.rightBarButtonItem = confirmButton
+        
+    }
+    
+    func confirmButtonPressed() {
+        
+        
+        
+    }
     
     func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: .UIKeyboardWillShow, object: nil)
@@ -120,6 +123,7 @@ class CitiesVC: UIViewController {
     }
     
     func startSearch() {
+        
         heightTableViewConstraint.constant = view.bounds.height - searchTextField.bounds.height
         
         UIView.animate(withDuration: 0.6, animations: {
@@ -208,6 +212,7 @@ extension CitiesVC: UITableViewDataSource {
         cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
         cell.textLabel?.textColor = UIColor.darkGray
         cell.textLabel?.text = "\(city.name), \(city.country)"
+        cell.backgroundColor = UIColor.clear
         
         return cell
     }

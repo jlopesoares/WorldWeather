@@ -35,6 +35,13 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         setup()
     }
     
+    func setup(){
+        imageViewBackground.shouldHaveOverlay()
+        
+        locationManager.delegate = self
+        currentWeather = CurrentWeather()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -44,38 +51,38 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         
         if let cities = selectedCities{
             pageControl.numberOfPages = cities.count
+             getCurrentWeather()
         } else {
             selectedCities = [String]()
             pageControl.numberOfPages = 0
+            
+            locationManager.locationAuthStatus { location in
+                currentLocation = location
+                getCurrentWeather()
+            }
         }
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    func getCurrentWeather() {
         
-        locationManager.locationAuthStatus { location in
-            
-            let weatherServices = WeatherServices(currentLocation: location)
-            
-            weatherServices.getCurrentWeather(completed: { wrapper in
-                self.currentWeather = wrapper
-                
-                weatherServices.getForecastWeather(completed: { forecastData in
-                    self.forecastArray = forecastData
-                    self.updateMainUI()
-                })
-                
+        var weatherService: WeatherServices!
+        
+        if let selectedCity = selectedCities.first {
+            weatherService = WeatherServices(city: selectedCity)
+        } else {
+            weatherService = WeatherServices(currentLocation: currentLocation)
+        }
+        
+        weatherService.getCurrentWeather(completed: { wrapper in
+            self.currentWeather = wrapper
+            weatherService.getForecastWeather(completed: { forecastData in
+                self.forecastArray = forecastData
+                self.updateMainUI()
             })
-        }
+        })
     }
-    
-    func setup(){
-        imageViewBackground.shouldHaveOverlay()
-        
-        locationManager.delegate = self
-        currentWeather = CurrentWeather()
-    }
+
     
     func updateMainUI() {
         temperatureLabel.text = currentWeather.currentTemperature
@@ -85,7 +92,7 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         
         collectionView.reloadData()
     }
-    
+
     @IBAction func openCitiesListButtonPressed(_ sender: Any) {
     
         if let citiesViewController = storyboard?.instantiateViewController(withIdentifier: CitiesViewControllerIdentifier) as? CitiesVC {
