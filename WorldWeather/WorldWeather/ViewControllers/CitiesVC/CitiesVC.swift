@@ -12,7 +12,7 @@ import Foundation
 class CitiesVC: UIViewController {
     
     var cities = [City]()
-    var _selectedCities: [String]!
+    var _selectedCities: [Int]!
     
     @IBOutlet weak var citiesTableview: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,9 +22,9 @@ class CitiesVC: UIViewController {
     @IBOutlet weak var widthConstraintTableView: NSLayoutConstraint!
     
     
-    var selectedCities: [String]{
+    var selectedCities: [Int]{
         if _selectedCities == nil {
-            _selectedCities = [String]()
+            _selectedCities = [Int]()
         }
         return _selectedCities
     }
@@ -59,7 +59,7 @@ class CitiesVC: UIViewController {
             if let indexpath = collectionView.indexPathForItem(at: location) {
                 if let cell = collectionView.cellForItem(at: indexpath) as? CityCell {
 
-                    if let index = selectedCities.index(of: cell.cityNameLabel.text!) {
+                    if let index = selectedCities.index(of: Int(cell.cityNameLabel.text!)!) {
                         _selectedCities.remove(at: index)
                         UserDefaults.standard.set(selectedCities, forKey: "selectedCities")
                         collectionView.deleteItems(at: [indexpath])
@@ -230,7 +230,7 @@ extension CitiesVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cityCell", for: indexPath) as? CityCell {
             
-            cell.setupCellWith(cityName: selectedCities[indexPath.row])
+            cell.setupCellWith(cityName: "\(selectedCities[indexPath.row])")
 
             return cell
         }
@@ -254,7 +254,7 @@ extension CitiesVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let city = cities[indexPath.row] as? City{
-            _selectedCities.append(city.name)
+            _selectedCities.append(city.identifier)
             UserDefaults.standard.set(selectedCities, forKey: "selectedCities")
             collectionView.reloadData()
             endSearch()

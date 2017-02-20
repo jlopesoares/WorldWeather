@@ -27,7 +27,7 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     private var currentLocation: CLLocation!
     private var currentWeather: CurrentWeather!
     private var forestcastWeather: Forecast!
-    var selectedCities: [String]!
+    var selectedCities: [Int]!
     fileprivate var forecastArray = [Forecast]()
     
     override func viewDidLoad() {
@@ -47,13 +47,13 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         
-        selectedCities = UserDefaults.standard.array(forKey: "selectedCities") as? [String]
+        selectedCities = UserDefaults.standard.array(forKey: "selectedCities") as? [Int]
         
         if let cities = selectedCities{
             pageControl.numberOfPages = cities.count
              getCurrentWeather()
         } else {
-            selectedCities = [String]()
+            selectedCities = [Int]()
             pageControl.numberOfPages = 0
             
             locationManager.locationAuthStatus { location in
@@ -69,7 +69,7 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         var weatherService: WeatherServices!
         
         if let selectedCity = selectedCities.first {
-            weatherService = WeatherServices(city: selectedCity)
+            weatherService = WeatherServices(city: "\(selectedCity)")
         } else {
             weatherService = WeatherServices(currentLocation: currentLocation)
         }

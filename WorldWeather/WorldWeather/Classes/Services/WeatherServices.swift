@@ -31,7 +31,7 @@ class WeatherServices {
         if let location = currentLocation {
             currentWeatherURL = URL(string: String(format: CURRENT_WEATHER_URL, location.coordinate.latitude, location.coordinate.longitude))!
         } else if let selectedCity = city {
-            currentWeatherURL = URL(string: String(format: CURRENT_WEATHER_URL_CITY_NAME, selectedCity))
+            currentWeatherURL = URL(string: String(format: CURRENT_WEATHER_URL_ID, selectedCity))
         }
         
         Alamofire.request(currentWeatherURL!).responseJSON { response in
@@ -49,7 +49,7 @@ class WeatherServices {
         if let location = currentLocation {
             forecastWeatherURL = URL(string: String(format: FORECAST_WEATHER_URL, location.coordinate.latitude, location.coordinate.longitude))!
         } else {
-            forecastWeatherURL = URL(string: String(format: FORECAST_WEATHER_URL_CITY_NAME, city!))
+            forecastWeatherURL = URL(string: String(format: FORECAST_WEATHER_URL_ID, city!))
         }
         
         Alamofire.request(forecastWeatherURL).responseJSON { response in
