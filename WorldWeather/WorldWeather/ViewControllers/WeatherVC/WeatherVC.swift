@@ -15,17 +15,15 @@ private let CitiesViewControllerIdentifier = "citiesViewController"
 class WeatherVC: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var temperatureTypeLabel: UILabel!
-    @IBOutlet weak var weatherTypeImageView: UIImageView!
-    @IBOutlet weak var currentDayLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+
+    @IBOutlet weak var forecastCollectionView: UICollectionView!
+    @IBOutlet weak var currentWeatherCollectionView: UICollectionView!
+    
     @IBOutlet weak var imageViewBackground : UIImageView!
     
     private let locationManager = CLLocationManager()
     private var currentLocation: CLLocation!
-    private var currentWeather: CurrentWeather!
+    var currentWeather: CurrentWeather!
     private var forestcastWeather: Forecast!
     var selectedCities: [Int]!
     fileprivate var forecastArray = [Forecast]()
@@ -37,7 +35,7 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
     
     func setup(){
         imageViewBackground.shouldHaveOverlay()
-        
+        currentWeatherCollectionView.delegate = self
         locationManager.delegate = self
         currentWeather = CurrentWeather()
     }
@@ -46,34 +44,34 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
         selectedCities = UserDefaults.standard.array(forKey: "selectedCities") as? [Int]
         
         if let cities = selectedCities{
             pageControl.numberOfPages = cities.count
-             getCurrentWeather()
+            getCurrentLocationByCity(city: (pageControl.currentPage > 0) ? pageControl.currentPage : 0)
         } else {
             selectedCities = [Int]()
             pageControl.numberOfPages = 0
-            
-            locationManager.locationAuthStatus { location in
-                currentLocation = location
-                getCurrentWeather()
-            }
+            getCurrentWeatherByLocation()
         }
-        
     }
     
-    func getCurrentWeather() {
-        
+    func getCurrentWeatherByLocation() {
         var weatherService: WeatherServices!
-        
-        if let selectedCity = selectedCities.first {
-            weatherService = WeatherServices(city: "\(selectedCity)")
-        } else {
-            weatherService = WeatherServices(currentLocation: currentLocation)
+        locationManager.locationAuthStatus { location in
+            weatherService = WeatherServices(currentLocation: location)
+            getCurrentWeather(weatherService: weatherService)
         }
-        
+    }
+    
+    func getCurrentLocationByCity(city: Int) {
+        if let listOfCities = selectedCities {
+            let weatherService = WeatherServices(city: "\(listOfCities[city])")
+            getCurrentWeather(weatherService: weatherService)
+        }
+    }
+
+    func getCurrentWeather(weatherService: WeatherServices) {
         weatherService.getCurrentWeather(completed: { wrapper in
             self.currentWeather = wrapper
             weatherService.getForecastWeather(completed: { forecastData in
@@ -82,15 +80,10 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
             })
         })
     }
-
     
     func updateMainUI() {
-        temperatureLabel.text = currentWeather.currentTemperature
-        cityLabel.text = currentWeather.cityName
-        currentDayLabel.text = currentWeather.date
-        weatherTypeImageView.image = UIImage(named: currentWeather.weatherType)
-        
-        collectionView.reloadData()
+        forecastCollectionView.reloadData()
+        currentWeatherCollectionView.reloadData()
     }
 
     @IBAction func openCitiesListButtonPressed(_ sender: Any) {
@@ -104,20 +97,73 @@ class WeatherVC: UIViewController, CLLocationManagerDelegate {
 }
 
 
+//MARK: UICollectionViewDataSource
+
 extension WeatherVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return forecastArray.count - 1
+        
+        if (collectionView == currentWeatherCollectionView && selectedCities.count > 0) {
+            return selectedCities.count
+        } else if (collectionView == currentWeatherCollectionView && selectedCities.count == 0 && currentWeather != nil) {
+            return 1;
+        } else {
+            return forecastArray.count - 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell-weather", for: indexPath) as? WeatherCell {
-            weatherCell.configureCell(weather: forecastArray[indexPath.row + 1])
-            return weatherCell
+        if collectionView == currentWeatherCollectionView {
+            if let cityWeatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell-currentCityWeather", for: indexPath) as? CurrentCityWeatherCell {
+                cityWeatherCell.configureCell(currentWeather: currentWeather)
+                
+                return cityWeatherCell
+            }
+        } else {
+            
+            if let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell-weather", for: indexPath) as? WeatherCell {
+                weatherCell.configureCell(weather: forecastArray[indexPath.row + 1])
+                return weatherCell
+            }
         }
-        
+    
         return UICollectionViewCell()
     }
     
 }
+
+//MARK: UICollectionVieeDelegate
+
+extension WeatherVC: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageWidth = currentWeatherCollectionView.bounds.size.width;
+        let currentPage = currentWeatherCollectionView.contentOffset.x / pageWidth;
+    
+        getCurrentLocationByCity(city: Int(currentPage))
+        pageControl.currentPage = (0.0 != fmodf(Float(currentPage), 1.0)) ? Int(currentPage + 1) : Int(currentPage)
+        
+    }
+    
+}
+
+//MARK: UICollectionViewDelegateFlowLayout
+
+extension WeatherVC: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView == currentWeatherCollectionView {
+            return collectionView.bounds.size
+        }
+        
+        return CGSize(width: 100, height: 100)
+        
+    }
+    
+}
+
+
+
+

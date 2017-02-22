@@ -24,19 +24,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portugal" translatesAutoresizingMaskIntoConstraints="NO" id="YdX-fr-yjk">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lisbon, Portugal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cf-yi-4TK">
-                                <rect key="frame" x="16" y="125" width="343" height="37"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="27"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AhH-BK-aVt">
-                                <rect key="frame" x="127.5" y="309" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="L8Z-Sc-rKj"/>
-                                    <constraint firstAttribute="width" constant="120" id="beF-KF-Yli"/>
-                                </constraints>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sxS-X2-nw8">
                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="0.39940068493150682" colorSpace="calibratedWhite"/>
@@ -116,24 +103,6 @@
                                     <constraint firstAttribute="height" constant="37" id="t6g-3O-Gkt"/>
                                 </constraints>
                             </pageControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mh-Qb-4Mt">
-                                <rect key="frame" x="40" y="170" width="129.5" height="137"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="100"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yq4-wV-286">
-                                <rect key="frame" x="16" y="445" width="343" height="29"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ºC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMt-Yy-i3V">
-                                <rect key="frame" x="169.5" y="265.5" width="25" height="31.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="23"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPI-RJ-xm8">
                                 <rect key="frame" x="319" y="72" width="40" height="40"/>
                                 <state key="normal" image="iconAdd"/>
@@ -149,52 +118,117 @@
                                 </constraints>
                                 <state key="normal" image="iconSettings"/>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pJh-qY-A1L">
+                                <rect key="frame" x="0.0" y="112" width="375" height="455"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HS8-xM-SRR">
+                                    <size key="itemSize" width="376" height="451"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell-currentCityWeather" id="ySc-qM-Rjm" customClass="CurrentCityWeatherCell" customModule="WorldWeather" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="2" width="376" height="451"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="451"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yq4-wV-286">
+                                                    <rect key="frame" x="25" y="397" width="326" height="29"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ºC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMt-Yy-i3V">
+                                                    <rect key="frame" x="154.5" y="157.5" width="25" height="31.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="23"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mh-Qb-4Mt">
+                                                    <rect key="frame" x="25" y="72" width="129.5" height="137"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="100"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lisbon, Portugal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cf-yi-4TK">
+                                                    <rect key="frame" x="25" y="25" width="326" height="37"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="27"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AhH-BK-aVt">
+                                                    <rect key="frame" x="128" y="217" width="120" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="FIY-Qz-OI6"/>
+                                                        <constraint firstAttribute="width" constant="120" id="Oyg-N3-GRv"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="3mh-Qb-4Mt" firstAttribute="leading" secondItem="9Cf-yi-4TK" secondAttribute="leading" id="6fr-T3-qgD"/>
+                                            <constraint firstItem="AhH-BK-aVt" firstAttribute="top" secondItem="3mh-Qb-4Mt" secondAttribute="bottom" constant="8" id="71l-Q6-w5P"/>
+                                            <constraint firstAttribute="trailing" secondItem="Yq4-wV-286" secondAttribute="trailing" constant="25" id="A0q-MJ-PhV"/>
+                                            <constraint firstAttribute="bottom" secondItem="Yq4-wV-286" secondAttribute="bottom" constant="25" id="AIe-iQ-Jk1"/>
+                                            <constraint firstItem="Yq4-wV-286" firstAttribute="leading" secondItem="ySc-qM-Rjm" secondAttribute="leading" constant="25" id="BMm-3u-KFo"/>
+                                            <constraint firstItem="AhH-BK-aVt" firstAttribute="centerX" secondItem="ySc-qM-Rjm" secondAttribute="centerX" id="Vg1-fE-nzF"/>
+                                            <constraint firstItem="hMt-Yy-i3V" firstAttribute="bottom" secondItem="3mh-Qb-4Mt" secondAttribute="bottom" constant="-20" id="Z0N-pp-HUW"/>
+                                            <constraint firstItem="9Cf-yi-4TK" firstAttribute="top" secondItem="ySc-qM-Rjm" secondAttribute="top" constant="25" id="eHL-uT-GCl"/>
+                                            <constraint firstItem="3mh-Qb-4Mt" firstAttribute="top" secondItem="9Cf-yi-4TK" secondAttribute="bottom" constant="10" id="k9f-of-BkM"/>
+                                            <constraint firstItem="hMt-Yy-i3V" firstAttribute="leading" secondItem="3mh-Qb-4Mt" secondAttribute="trailing" id="pob-4l-6Xe"/>
+                                            <constraint firstAttribute="trailing" secondItem="9Cf-yi-4TK" secondAttribute="trailing" constant="25" id="vzn-Ax-YKj"/>
+                                            <constraint firstItem="9Cf-yi-4TK" firstAttribute="leading" secondItem="ySc-qM-Rjm" secondAttribute="leading" constant="25" id="zwC-Fk-Y8X"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="cityLabel" destination="9Cf-yi-4TK" id="3Df-6h-5lQ"/>
+                                            <outlet property="currentDayLabel" destination="Yq4-wV-286" id="Oir-h7-IGM"/>
+                                            <outlet property="temperatureLabel" destination="3mh-Qb-4Mt" id="yh5-Kx-viz"/>
+                                            <outlet property="temperatureTypeLabel" destination="hMt-Yy-i3V" id="w0s-DX-cxn"/>
+                                            <outlet property="weatherTypeImageView" destination="AhH-BK-aVt" id="8N3-Se-t5s"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="sX9-OS-RAf"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MPI-RJ-xm8" firstAttribute="width" secondItem="gL3-nR-6Nw" secondAttribute="width" id="4nt-v8-q4y"/>
                             <constraint firstItem="YdX-fr-yjk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4wz-MZ-rJ7"/>
-                            <constraint firstItem="AhH-BK-aVt" firstAttribute="top" secondItem="3mh-Qb-4Mt" secondAttribute="bottom" constant="2" id="7Y3-Xp-Vzi"/>
                             <constraint firstItem="gL3-nR-6Nw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="92I-OO-hiI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YdX-fr-yjk" secondAttribute="bottom" id="AHv-gy-R1G"/>
                             <constraint firstItem="MPI-RJ-xm8" firstAttribute="top" secondItem="gL3-nR-6Nw" secondAttribute="top" id="CIa-gm-HOt"/>
                             <constraint firstItem="gL3-nR-6Nw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Dex-Mf-2re"/>
                             <constraint firstItem="MPI-RJ-xm8" firstAttribute="height" secondItem="gL3-nR-6Nw" secondAttribute="height" id="GmW-eZ-tyT"/>
-                            <constraint firstItem="Yq4-wV-286" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Kv2-9R-4KF"/>
-                            <constraint firstItem="3mh-Qb-4Mt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="PHo-rR-Ub3"/>
                             <constraint firstItem="MPI-RJ-xm8" firstAttribute="leading" secondItem="Fh3-YC-nuP" secondAttribute="trailing" constant="8" id="Qos-th-69H"/>
-                            <constraint firstItem="AhH-BK-aVt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SkT-iJ-GjX"/>
                             <constraint firstItem="Fh3-YC-nuP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="THS-xz-fLz"/>
-                            <constraint firstItem="hMt-Yy-i3V" firstAttribute="leading" secondItem="3mh-Qb-4Mt" secondAttribute="trailing" id="WBO-0G-boU"/>
-                            <constraint firstItem="3mh-Qb-4Mt" firstAttribute="top" secondItem="9Cf-yi-4TK" secondAttribute="bottom" constant="8" id="X8u-Vr-EH5"/>
-                            <constraint firstItem="Yq4-wV-286" firstAttribute="top" secondItem="AhH-BK-aVt" secondAttribute="bottom" constant="16" id="XR9-uu-4V1"/>
-                            <constraint firstAttribute="trailing" secondItem="Yq4-wV-286" secondAttribute="trailing" constant="16" id="c3q-7P-sYy"/>
+                            <constraint firstItem="pJh-qY-A1L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZUJ-hl-roW"/>
                             <constraint firstAttribute="trailing" secondItem="YdX-fr-yjk" secondAttribute="trailing" id="eg6-Ao-nqj"/>
-                            <constraint firstAttribute="trailing" secondItem="9Cf-yi-4TK" secondAttribute="trailing" constant="16" id="ghx-xf-GTQ"/>
                             <constraint firstAttribute="trailing" secondItem="sxS-X2-nw8" secondAttribute="trailing" id="ixc-cg-f0Q"/>
                             <constraint firstItem="YdX-fr-yjk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jHt-hh-2Wn"/>
                             <constraint firstAttribute="trailing" secondItem="MPI-RJ-xm8" secondAttribute="trailing" constant="16" id="lPh-XZ-Isy"/>
                             <constraint firstItem="Fh3-YC-nuP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="n0r-HJ-KEH"/>
-                            <constraint firstItem="9Cf-yi-4TK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="p2U-ND-5eM"/>
                             <constraint firstItem="Fh3-YC-nuP" firstAttribute="leading" secondItem="gL3-nR-6Nw" secondAttribute="trailing" constant="8" id="pa1-uq-lev"/>
-                            <constraint firstItem="hMt-Yy-i3V" firstAttribute="bottom" secondItem="3mh-Qb-4Mt" secondAttribute="bottom" constant="-10" id="s6q-tm-ghO"/>
+                            <constraint firstItem="sxS-X2-nw8" firstAttribute="top" secondItem="pJh-qY-A1L" secondAttribute="bottom" id="r6a-Yl-TNA"/>
+                            <constraint firstAttribute="trailing" secondItem="pJh-qY-A1L" secondAttribute="trailing" id="rR0-wQ-ZIg"/>
                             <constraint firstItem="YdX-fr-yjk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="tqo-dP-ZjZ"/>
+                            <constraint firstItem="pJh-qY-A1L" firstAttribute="top" secondItem="gL3-nR-6Nw" secondAttribute="bottom" id="tzO-WB-fMS"/>
                             <constraint firstItem="YdX-fr-yjk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vRj-tG-dQE"/>
-                            <constraint firstItem="9Cf-yi-4TK" firstAttribute="top" secondItem="Fh3-YC-nuP" secondAttribute="bottom" constant="16" id="vj5-JD-dfr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sxS-X2-nw8" secondAttribute="bottom" id="wju-hp-IZh"/>
                             <constraint firstItem="sxS-X2-nw8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ymg-eT-uKK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cky-T0-4lL"/>
                     <connections>
-                        <outlet property="cityLabel" destination="9Cf-yi-4TK" id="h6C-Ec-cpI"/>
-                        <outlet property="collectionView" destination="sxS-X2-nw8" id="8v6-31-Iit"/>
-                        <outlet property="currentDayLabel" destination="Yq4-wV-286" id="uG9-db-nkq"/>
+                        <outlet property="currentWeatherCollectionView" destination="pJh-qY-A1L" id="1mU-KQ-KXA"/>
+                        <outlet property="forecastCollectionView" destination="sxS-X2-nw8" id="MAs-vg-TIk"/>
                         <outlet property="imageViewBackground" destination="YdX-fr-yjk" id="UPR-6e-cC7"/>
                         <outlet property="pageControl" destination="Fh3-YC-nuP" id="ARf-TO-ZLU"/>
-                        <outlet property="temperatureLabel" destination="3mh-Qb-4Mt" id="y0U-Fn-P9o"/>
-                        <outlet property="temperatureTypeLabel" destination="hMt-Yy-i3V" id="iJ6-77-oJj"/>
-                        <outlet property="weatherTypeImageView" destination="AhH-BK-aVt" id="8sz-pI-XvS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -223,14 +257,14 @@
                                     <inset key="sectionInset" minX="8" minY="10" maxX="8" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cityCell" id="DQQ-7K-Is9" customClass="CityCell" customModule="WorldWeather" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cityCell" id="DQQ-7K-Is9" customClass="CityCell" customModule="WorldWeather" customModuleProvider="target">
                                         <rect key="frame" x="8" y="10" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="We9-Yj-KCO">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="We9-Yj-KCO">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUe-aT-KzZ">
@@ -239,6 +273,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ4-2V-teh">
+                                                    <rect key="frame" x="75" y="0.0" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="QZu-t6-fUJ"/>
+                                                        <constraint firstAttribute="width" constant="25" id="wK3-Bx-Meh"/>
+                                                    </constraints>
+                                                    <state key="normal" image="iconDelete"/>
+                                                    <connections>
+                                                        <action selector="deleteButtonPressed:" destination="DQQ-7K-Is9" eventType="touchUpInside" id="OzG-vt-Gbs"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -246,14 +291,17 @@
                                             <constraint firstItem="tUe-aT-KzZ" firstAttribute="centerX" secondItem="DQQ-7K-Is9" secondAttribute="centerX" id="Hr1-WH-pBZ"/>
                                             <constraint firstItem="We9-Yj-KCO" firstAttribute="top" secondItem="DQQ-7K-Is9" secondAttribute="top" id="IXU-6Q-c4b"/>
                                             <constraint firstAttribute="bottom" secondItem="We9-Yj-KCO" secondAttribute="bottom" id="J8d-cm-xiC"/>
+                                            <constraint firstItem="pZ4-2V-teh" firstAttribute="top" secondItem="DQQ-7K-Is9" secondAttribute="top" id="JkM-PG-Tik"/>
                                             <constraint firstAttribute="trailing" secondItem="tUe-aT-KzZ" secondAttribute="trailing" constant="8" id="LvV-yv-Z1n"/>
                                             <constraint firstItem="tUe-aT-KzZ" firstAttribute="leading" secondItem="DQQ-7K-Is9" secondAttribute="leading" constant="8" id="SZZ-c9-AoP"/>
                                             <constraint firstItem="tUe-aT-KzZ" firstAttribute="centerY" secondItem="DQQ-7K-Is9" secondAttribute="centerY" id="UmZ-SF-UAs"/>
+                                            <constraint firstAttribute="trailing" secondItem="pZ4-2V-teh" secondAttribute="trailing" id="UnD-Fl-hM4"/>
                                             <constraint firstAttribute="trailing" secondItem="We9-Yj-KCO" secondAttribute="trailing" id="ZZo-BX-9c2"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="backgroundImageView" destination="We9-Yj-KCO" id="S0l-OS-PF3"/>
                                             <outlet property="cityNameLabel" destination="tUe-aT-KzZ" id="Wxo-YI-KLr"/>
+                                            <outlet property="deleteButton" destination="pZ4-2V-teh" id="FBo-Dr-0xN"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -323,6 +371,7 @@
     </scenes>
     <resources>
         <image name="iconAdd" width="24" height="24"/>
+        <image name="iconDelete" width="24" height="24"/>
         <image name="iconSettings" width="24" height="24"/>
         <image name="portugal" width="640" height="426"/>
     </resources>

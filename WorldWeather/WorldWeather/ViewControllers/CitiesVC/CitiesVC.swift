@@ -13,6 +13,7 @@ class CitiesVC: UIViewController {
     
     var cities = [City]()
     var _selectedCities: [Int]!
+    var _editMode: Bool!
     
     @IBOutlet weak var citiesTableview: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -27,6 +28,13 @@ class CitiesVC: UIViewController {
             _selectedCities = [Int]()
         }
         return _selectedCities
+    }
+    
+    var shouldBeEditable: Bool {
+        if _editMode == nil {
+            _editMode = false
+        }
+        return _editMode
     }
     
     override func viewDidLoad() {
@@ -71,20 +79,19 @@ class CitiesVC: UIViewController {
     }
     
     func setupNavigationBarButtons() {
-        let confirmButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(confirmButtonPressed))
-        navigationItem.rightBarButtonItem = confirmButton
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed))
+        navigationItem.rightBarButtonItem = editButton
         
     }
     
-    func confirmButtonPressed() {
-        
-        
-        
+    func editButtonPressed () {
+        _editMode = true
+        collectionView.reloadData()
     }
     
     func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDissapear), name: .UIKeyboardWillHide, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDissapear), name: .UIKeyboardWillHide, object: nil)
     }
     
     func keyboardWillAppear(notification: NSNotification) {
@@ -94,10 +101,10 @@ class CitiesVC: UIViewController {
             }
         }
     }
-    
-    func keyboardWillDissapear(notification: NSNotification) {
-        //TODO: Something when keyboard will close
-    }
+//    
+//    func keyboardWillDissapear(notification: NSNotification) {
+//        //TODO: Something when keyboard will close
+//    }
     
     func getCitiesList() {
         do {
@@ -159,6 +166,17 @@ class CitiesVC: UIViewController {
     
     func updateTableView(searchText: String) {
         //filter cities array
+    }
+    
+    
+    func getCity(cityID: Int) -> City?{
+        
+        for city in cities {
+            if cityID == city.identifier {
+                return city
+            }
+        }
+        return nil
     }
     
 }
@@ -230,9 +248,12 @@ extension CitiesVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cityCell", for: indexPath) as? CityCell {
             
-            cell.setupCellWith(cityName: "\(selectedCities[indexPath.row])")
-
-            return cell
+            if let city =  getCity(cityID: selectedCities[indexPath.row]) {
+                cell.setupCellWith(city: city, editAvailable: shouldBeEditable)
+                cell.delegate = self
+                return cell
+            }
+            
         }
         return UICollectionViewCell()
     }
@@ -240,25 +261,33 @@ extension CitiesVC: UICollectionViewDataSource {
 }
 
 
-//Mark: UICollectionViewDelgate
-extension CitiesVC: UICollectionViewDelegate{
-    
-    
-    
-}
-
 //Mark: UICollectionViewDelegate
 
 extension CitiesVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let city = cities[indexPath.row] as? City{
-            _selectedCities.append(city.identifier)
-            UserDefaults.standard.set(selectedCities, forKey: "selectedCities")
-            collectionView.reloadData()
-            endSearch()
-        }
+        let city = cities[indexPath.row]
+        
+        _selectedCities.append(city.identifier)
+        UserDefaults.standard.set(selectedCities, forKey: "selectedCities")
+        collectionView.reloadData()
+        endSearch()
     }
     
+}
+
+extension CitiesVC: CityCellDelegate {
+    
+    func deleteCity(cell: CityCell, city: City) {
+        
+        if let indexpath = collectionView.indexPath(for: cell) {
+            if let index = selectedCities.index(of: Int(city.identifier)) {
+                _selectedCities.remove(at: index)
+                UserDefaults.standard.set(selectedCities, forKey: "selectedCities")
+                collectionView.deleteItems(at: [indexpath])
+                
+            }
+        }
+    }
 }
