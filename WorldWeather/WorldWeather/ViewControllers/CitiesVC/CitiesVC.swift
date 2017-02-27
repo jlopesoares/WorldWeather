@@ -50,13 +50,8 @@ class CitiesVC: UIViewController {
         collectionView.dataSource = self
         citiesTableview.separatorColor = UIColor.lightGray
         
-        
-        setupNavigationBarButtons()
-        
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(getSelectedCell))
-        collectionView.addGestureRecognizer(longPressGesture)
-            
         getCitiesList()
+        setupNavigationBarButtons()
         setupObservers()
     }
     
@@ -85,7 +80,7 @@ class CitiesVC: UIViewController {
     }
     
     func editButtonPressed () {
-        _editMode = true
+        _editMode = !shouldBeEditable
         collectionView.reloadData()
     }
     
@@ -236,7 +231,6 @@ extension CitiesVC: UITableViewDataSource {
     }
     
 }
-
 
 //MARK: UICollectionViewDatasource
 extension CitiesVC: UICollectionViewDataSource {

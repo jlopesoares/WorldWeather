@@ -247,9 +247,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portugal" translatesAutoresizingMaskIntoConstraints="NO" id="B7k-eX-mOC">
+                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1S7-Ml-YVh">
                                 <rect key="frame" x="0.0" y="65" width="375" height="602"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="8" id="DGz-Be-L51">
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -327,9 +330,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="B7k-eX-mOC" secondAttribute="trailing" id="0Qj-vJ-oh4"/>
+                            <constraint firstItem="B7k-eX-mOC" firstAttribute="top" secondItem="gtq-Lo-2Go" secondAttribute="bottom" id="4ft-Qj-CM0"/>
                             <constraint firstAttribute="trailing" secondItem="gtq-Lo-2Go" secondAttribute="trailing" id="6Tf-i9-rE8"/>
                             <constraint firstItem="c3M-C6-09Q" firstAttribute="centerX" secondItem="kLa-cO-GYn" secondAttribute="centerX" id="AKZ-yb-FV6"/>
                             <constraint firstItem="gtq-Lo-2Go" firstAttribute="leading" secondItem="kLa-cO-GYn" secondAttribute="leading" id="Cpo-KM-lbp"/>
+                            <constraint firstItem="B7k-eX-mOC" firstAttribute="leading" secondItem="kLa-cO-GYn" secondAttribute="leading" id="OoS-ml-GpB"/>
+                            <constraint firstItem="SMU-vv-3fX" firstAttribute="top" secondItem="B7k-eX-mOC" secondAttribute="bottom" id="RqJ-07-75g"/>
                             <constraint firstItem="1S7-Ml-YVh" firstAttribute="top" secondItem="gtq-Lo-2Go" secondAttribute="bottom" id="Sb4-Gf-idU"/>
                             <constraint firstItem="c3M-C6-09Q" firstAttribute="top" secondItem="gtq-Lo-2Go" secondAttribute="bottom" id="ZlY-2f-I9X"/>
                             <constraint firstItem="1S7-Ml-YVh" firstAttribute="leading" secondItem="kLa-cO-GYn" secondAttribute="leading" id="hAH-25-bqB"/>

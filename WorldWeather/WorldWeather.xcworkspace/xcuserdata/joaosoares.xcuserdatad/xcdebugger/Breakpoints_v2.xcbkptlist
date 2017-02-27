@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorldWeather/ViewControllers/CitiesVC/CitiesVC.swift"
-            timestampString = "509476047.295592"
+            timestampString = "509649416.453763"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "deleteCity(cell:city:)"
             landmarkType = "7">
          </BreakpointContent>
